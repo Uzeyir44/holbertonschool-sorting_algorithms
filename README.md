@@ -1,0 +1,1 @@
+There will be sorting alghoritms such as: Bubble, Insertion, Selection, Quick.
