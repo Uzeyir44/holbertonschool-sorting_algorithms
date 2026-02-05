@@ -21,9 +21,9 @@ void insertion_sort_list(listint_t **list)
                     leading_header = tmp->prev;
                 tmp->prev->next = tmp->next;
                 tmp->next->prev = tmp->prev;
+                tmp->prev = tmp->prev->prev;
                 tmp->prev->prev = tmp;
                 tmp->next = tmp->prev;
-                tmp->prev = NULL;
                 print_list(*list);
             }
 
