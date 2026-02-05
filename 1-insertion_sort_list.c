@@ -24,12 +24,13 @@ void insertion_sort_list(listint_t **list)
                 tmp->next = tmp->prev;
                 tmp->prev = tmp->next->prev;
                 tmp->next->prev = tmp;
+
+                if (tmp->prev == NULL)
+                    *list = tmp;
+
+                print_list(*list);
             }
 
-            if (tmp->prev == NULL)
-                *list = tmp;
-
-            print_list(*list);
             n--;
         }
 
