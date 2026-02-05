@@ -25,4 +25,7 @@ void print_list(const listint_t *list);
 /* bubble_sort - Sorts an array of integers using Bubble sort */
 void bubble_sort(int *array, size_t size);
 
+/* sorts double list using insertion alghoritm */
+void insertion_sort_list(listint_t **list);
+
 #endif
