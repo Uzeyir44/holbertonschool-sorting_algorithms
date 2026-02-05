@@ -3,7 +3,7 @@
 
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *tmp = list->next;
+    listint_t *tmp = (*list)->next;
     int n;
     listint_t *leading_header;
     int index = 1;
