@@ -28,4 +28,7 @@ void bubble_sort(int *array, size_t size);
 /* sorts double list using insertion alghoritm */
 void insertion_sort_list(listint_t **list);
 
+/* sorts an array using selection sort */
+void selection_sort(int *array, size_t size);
+
 #endif
