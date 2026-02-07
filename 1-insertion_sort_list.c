@@ -7,6 +7,8 @@ void insertion_sort_list(listint_t **list)
     int n;
     listint_t *leading_header;
     int index = 1;
+    listint_t *right;
+    listint_t *left;
 
     while (tmp != NULL) 
     {
@@ -17,14 +19,16 @@ void insertion_sort_list(listint_t **list)
         {
             if (tmp->n < tmp->prev->n)
             {
+                left = tmp->prev;
+                right = tmp->next;
+
                 if (n == index)
                     leading_header = tmp->prev;
-                tmp->prev->next = tmp->next;
-                tmp->next->prev = tmp->prev;
-                tmp->next = tmp->prev;
-                tmp->prev = tmp->next->prev;
-                tmp->next->prev = tmp;
 
+                left->next = tmp->next;
+                right->prev = tmp->prev;
+                tmp->prev = left->prev;
+                tmp->next = left;
                 if (tmp->prev == NULL)
                     *list = tmp;
 
