@@ -2,38 +2,47 @@
 
 void patiticm(size_t l, size_t h, int *array)
 {
-    int pivot = array[(h-l) / 2];
-    size_t i = l; 
-    size_t j = h;
+    int pivot;
     int holder;
+    size_t i = l;
+    size_t j = h - 1;
 
-    if (i >= j)
+    if (l >= h)
         return;
+
+    pivot = array[h];
 
     while (i < j)
     {
         while (array[i] < pivot)
         {
             i++;
+            if (i > j)
+                break;
         }
         while (array[j] >= pivot)
         {
             j--;
+            if (i > j)
+                break;
         }
-
-        holder = array[i];
-        array[i] = array[j];
-        array[j] = holder;
+        if (i < j)
+        {
+            holder = array[i];
+            array[i] = array[j];
+            array[j] = holder;
+        }
     }
 
-    array[(h-l) / 2] = array[j];
-    array[j] = pivot;
-
-    patiticm(l, j, array);
-    patiticm(j+1, h, array);
+    array[h] = array[i];
+    array[i] = pivot;
+    if (i > l)
+        patiticm(l, i-1, array);
+    patiticm(i+1, h, array);
 }
 
 void quick_sort(int *array, size_t size)
 {
-    patiticm(0, size - 1, array);
+    if (array != NULL && size > 1)
+        patiticm(0, size - 1, array);
 }
