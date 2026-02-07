@@ -31,4 +31,10 @@ void insertion_sort_list(listint_t **list);
 /* sorts an array using selection sort */
 void selection_sort(int *array, size_t size);
 
+/* sorts an array using quick sort */
+void quick_sort(int *array, size_t size);
+
+/* helping function for quick sort */
+void patiticm(size_t l, size_t h, int *array);
+
 #endif
