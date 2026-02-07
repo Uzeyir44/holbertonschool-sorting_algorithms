@@ -3,42 +3,36 @@
 
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *tmp = (*list)->next;
-    int n;
-    listint_t *leading_header;
-    int index = 1;
-    listint_t *right;
-    listint_t *left;
+    listint_t *curr, *next, *left, *right;
 
-    while (tmp != NULL) 
+    curr = (*list)->next;
+
+    while(curr != NULL)
     {
-        n = index;
-        leading_header = tmp;
+        next = curr->next;
 
-        while (n)
+        while(curr->prev != NULL && curr->n < curr->prev->n)
         {
-            if (tmp->n < tmp->prev->n)
-            {
-                left = tmp->prev;
-                right = tmp->next;
+            left = curr->prev;
+            right = curr->next;
 
-                if (n == index)
-                    leading_header = tmp->prev;
+            left->next = curr->next;
+            if (right != NULL)
+                right->prev = left;
 
-                left->next = tmp->next;
-                right->prev = tmp->prev;
-                tmp->prev = left->prev;
-                tmp->next = left;
-                if (tmp->prev == NULL)
-                    *list = tmp;
+            curr->next = left;
+            curr->prev = left->prev;
+            
+            if (left->prev != NULL)
+                left->prev->next = curr;
+            else
+                *list = curr;
 
-                print_list(*list);
-            }
+            left->prev = curr;
 
-            n--;
+            print_list(*list);
         }
 
-        tmp = leading_header->next;
-        index++;
+        curr = next;
     }
 }
