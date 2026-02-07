@@ -35,6 +35,6 @@ void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 
 /* helping function for quick sort */
-void patiticm(size_t l, size_t h, int *array);
+void patiticm(size_t l, size_t h, int *array, size_t size);
 
 #endif

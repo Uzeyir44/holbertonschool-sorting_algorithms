@@ -6,7 +6,7 @@
  * @h: right index
  * @array: array to sort
  */
-void patiticm(size_t l, size_t h, int *array)
+void patiticm(size_t l, size_t h, int *array, size_t size)
 {
 	size_t i, j;
 	int pivot, holder;
@@ -41,17 +41,19 @@ void patiticm(size_t l, size_t h, int *array)
 			holder = array[i];
 			array[i] = array[j];
 			array[j] = holder;
+            print_array(array, size);
 		}
 	}
 
 	holder = array[i];
 	array[i] = array[h];
 	array[h] = holder;
+    print_array(array, size);
 
 	if (i > l)
-		patiticm(l, i - 1, array);
+		patiticm(l, i - 1, array, size);
 	if (i < h)
-		patiticm(i + 1, h, array);
+		patiticm(i + 1, h, array, size);
 }
 
 /**
@@ -62,5 +64,5 @@ void patiticm(size_t l, size_t h, int *array)
 void quick_sort(int *array, size_t size)
 {
 	if (array != NULL && size > 1)
-		patiticm(0, size - 1, array);
+		patiticm(0, size - 1, array, size);
 }
