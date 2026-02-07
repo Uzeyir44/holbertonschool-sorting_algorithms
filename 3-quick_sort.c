@@ -33,7 +33,7 @@ void patiticm(size_t l, size_t h, int *array, size_t size)
 		}
 	}
 
-	/* final pivot swap */
+	/* final pivot swap, only if needed */
 	if (i != h)
 	{
 		holder = array[i];
