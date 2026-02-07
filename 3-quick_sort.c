@@ -1,10 +1,11 @@
 #include "sort.h"
 
 /**
- * patiticm - partitions an array and sorts recursively
+ * patiticm - partitions an array using Lomuto scheme
  * @l: left index
  * @h: right index
  * @array: array to sort
+ * @size: size of array for printing
  */
 void patiticm(size_t l, size_t h, int *array, size_t size)
 {
@@ -16,39 +17,30 @@ void patiticm(size_t l, size_t h, int *array, size_t size)
 
 	pivot = array[h];
 	i = l;
-	j = h - 1;
 
-	while (i < j)
+	for (j = l; j < h; j++)
 	{
-		while (array[i] < pivot)
+		if (array[j] < pivot)
 		{
+			if (i != j)
+			{
+				holder = array[i];
+				array[i] = array[j];
+				array[j] = holder;
+				print_array(array, size);
+			}
 			i++;
-			if (i > j)
-				break;
-		}
-
-		while (array[j] >= pivot)
-		{
-			if (j == 0)
-				break;
-			j--;
-			if (i > j)
-				break;
-		}
-
-		if (i < j)
-		{
-			holder = array[i];
-			array[i] = array[j];
-			array[j] = holder;
-            print_array(array, size);
 		}
 	}
 
-	holder = array[i];
-	array[i] = array[h];
-	array[h] = holder;
-    print_array(array, size);
+	/* final pivot swap */
+	if (i != h)
+	{
+		holder = array[i];
+		array[i] = array[h];
+		array[h] = holder;
+		print_array(array, size);
+	}
 
 	if (i > l)
 		patiticm(l, i - 1, array, size);
